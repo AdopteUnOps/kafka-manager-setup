@@ -3,7 +3,7 @@ set -e
 
 if [ -z "${CLUSTER_NAME}" ]
 then
-  CLUSTER_NAME="name"
+  CLUSTER_NAME="kafka"
 fi
 
 if [ -z "${ZK_HOSTS}" ]
@@ -73,12 +73,12 @@ fi
 
 if [ -z "${BROKER_VIEW_THREAD_POOL_SIZE}" ]
 then
-  PARTITION_OFFSET_CACHE_TIMEOUT_SECS="2"
+  BROKER_VIEW_THREAD_POOL_SIZE="2"
 fi
 
 if [ -z "${BROKER_VIEW_THREAD_POOL_QUEUE_SIZE}" ]
 then
-  PARTITION_OFFSET_CACHE_TIMEOUT_SECS="1000"
+  BROKER_VIEW_THREAD_POOL_QUEUE_SIZE="1000"
 fi
 
 if [ -z "${OFFSET_CACHE_THREAD_POOL_SIZE}" ]
@@ -115,8 +115,8 @@ curl -v "http://${SERVICE_KAFKA_MANAGER_HOST}:${SERVICE_KAFKA_MANAGER_PORT}/clus
     --data-urlencode "jmxUser=${JMX_USER}" \
     --data-urlencode "jmxPass=${JMX_PASS}" \
     --data-urlencode "tuning.brokerViewUpdatePeriodSeconds=${BROKER_VIEW_UPDATE_PERIOD_SECONDS}" \
-    --data-urlencode "tuning.clusterManagerThreadPoolSize=${BROKER_VIEW_THREAD_POOL_SIZE}" \
-    --data-urlencode "tuning.clusterManagerThreadPoolQueueSize=${BROKER_VIEW_THREAD_POOL_QUEUE_SIZE}" \
+    --data-urlencode "tuning.clusterManagerThreadPoolSize=${CLUSTER_MANAGER_THREAD_POOL_SIZE}" \
+    --data-urlencode "tuning.clusterManagerThreadPoolQueueSize=${CLUSTER_MANAGER_THREAD_POOL_QUEUE_SIZE}" \
     --data-urlencode "tuning.kafkaCommandThreadPoolSize=${KAFKA_COMMAND_THREAD_POOL_SIZE}" \
     --data-urlencode "tuning.kafkaCommandThreadPoolQueueSize=${KAFKA_COMMAND_THREAD_POOL_QUEUE_SIZE}" \
     --data-urlencode "tuning.logkafkaCommandThreadPoolSize=${LOG_KAFKA_COMMAND_THREAD_POOL_SIZE}" \
