@@ -13,7 +13,7 @@ fi
 
 if [ -z "${KAFKA_VERSION}" ]
 then
-  KAFKA_VERSION="0.11.0.0"
+  KAFKA_VERSION="1.0.0"
 fi
 
 if [ -z "${JMX_USER}" ]
